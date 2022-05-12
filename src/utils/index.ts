@@ -11,9 +11,7 @@ export const promiseMachine = createMachine({
       },
     },
     resolved: {
-      on: {
-        DO: { type: "do" },
-      },
+      type: "final",
     },
     rejected: {
       type: "final",
