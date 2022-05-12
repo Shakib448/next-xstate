@@ -1,8 +1,8 @@
-import { promiseMachine } from "@utils/promiseMachine";
+import { trafficLightMachine } from "@utils/TrafficLightMachine";
 import { useMachine } from "@xstate/react";
 
 const Xstate = () => {
-  const [state, send] = useMachine(promiseMachine, { devTools: true });
+  const [state, send] = useMachine(trafficLightMachine, { devTools: true });
 
   return (
     <div className="flex h-screen justify-center items-center">
