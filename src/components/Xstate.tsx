@@ -1,4 +1,4 @@
-import { promiseMachine } from "@utils";
+import { promiseMachine } from "@utils/promiseMachine";
 import { useMachine } from "@xstate/react";
 
 const Xstate = () => {
