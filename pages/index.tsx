@@ -1,9 +1,12 @@
 import Layout from "@common/Layout";
-import Xstate from "@components/Xstate";
+import JokeSearch from "@components/JokeSearch";
+// import Xstate from "@components/Xstate";
+
 import { ReactElement } from "react";
 
 const Home = () => {
-  return <Xstate />;
+  // return <Xstate />;
+  return <JokeSearch />;
 };
 
 export default Home;
