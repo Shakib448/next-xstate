@@ -1,6 +1,12 @@
+import { jokesMachine } from "@utils/JokesMachine";
 import { useMachine } from "@xstate/react";
 
-export default function JokeSearch() {
+const JokeSearch = () => {
+  const [{ context, matches }, send] = useMachine(jokesMachine, {
+    devTools: true,
+  });
+
+  const { results, error, input } = context;
   return (
     <div className="flex h-screen justify-center items-center bg-black w-full">
       <div className="space-y-2">
@@ -16,23 +22,34 @@ export default function JokeSearch() {
                 placeholder="Search"
                 aria-label="Search"
                 aria-describedby="button-addon3"
+                value={input}
+                onChange={(e) => send({ type: "TYPE", value: e.target.value })}
               />
               <button
                 className="btn inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                 type="button"
                 id="button-addon3"
+                disabled={matches("searching")}
+                onClick={() => send("SEARCH")}
               >
                 Search
               </button>
             </div>
           </div>
         </div>
+
+        {matches("error") && <div>{error}</div>}
         <ul className="text-center">
-          <li className="text-md font-bold text-white">
-            Insert Awesome Joke here
-          </li>
+          {results.map(({ joke, id }, index) => (
+            <li className="text-md font-bold text-white" key={id}>
+              {joke}
+              {index !== results.length ? <hr /> : null}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
   );
-}
+};
+
+export default JokeSearch;
