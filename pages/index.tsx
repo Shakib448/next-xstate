@@ -1,9 +1,10 @@
 import Layout from "@common/Layout";
-import JokeSearch from "@components/JokeSearch";
+import Counter from "@components/Counter";
+// import JokeSearch from "@components/JokeSearch";
 import { ReactElement } from "react";
 
 const Home = () => {
-  return <JokeSearch />;
+  return <Counter />;
 };
 
 export default Home;
